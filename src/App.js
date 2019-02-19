@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Todos from './components/Todos';
 import Header from './components/Header';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 import uuid from 'uuid';
-
 import './App.css';
+// import axios from 'axios';
+
 
 class App extends Component {
+
+
   state = {
     todos: [
       // {
@@ -26,8 +29,17 @@ class App extends Component {
       //   title: 'Reunión',
       //   completed: false,
       // }
+
     ]
   }
+
+
+
+
+  // componentDidMount() {
+  //   axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+  //     .then(res => this.setState({ todos: res.data }))
+  // }
 
   // Toggle Complete
   markComplete = (id) => {
@@ -44,6 +56,12 @@ class App extends Component {
   delTodo = (id) => {
     this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] })
 
+    // axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+    //   .then(res => this.setState({
+    //     todos: [...this.state.todos.filter
+    //       (todo => todo.id !== id)]
+    //   }))
+
   }
 
   AddTodo = (title) => {
@@ -53,6 +71,13 @@ class App extends Component {
       completed: false
     }
     this.setState({ todos: [...this.state.todos, newTodo] })
+
+    // axios.post('https://jsonplaceholder.typicode.com/todos', {
+
+    //   title,
+    //   completed: false
+    // })
+    //   .then(res => this.setState({ todos: [...this.state.todos, res.data] }))
   }
 
 
@@ -60,6 +85,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+
           <Header />
           <Route exact path="/" render={props => (
             <React.Fragment>
@@ -68,6 +94,7 @@ class App extends Component {
             </React.Fragment>
           )} />
           <Route path="/about" component={About} />
+
         </div>
       </Router>
     );
