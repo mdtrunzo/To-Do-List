@@ -6,11 +6,11 @@ import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 import uuid from 'uuid';
 import './App.css';
+import firebase from 'firebase'
 // import axios from 'axios';
 
 
 class App extends Component {
-
 
   state = {
     todos: [
@@ -32,6 +32,7 @@ class App extends Component {
 
     ]
   }
+
 
 
 
@@ -85,7 +86,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-
           <Header />
           <Route exact path="/" render={props => (
             <React.Fragment>
